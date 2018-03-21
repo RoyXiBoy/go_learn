@@ -1,0 +1,25 @@
+当一个类型包含（内嵌）另一个类型（实现了一个或多个接口）的指针时，这个类型就可以使用（另一个类型）所有的接口方法。
+
+例如：
+
+type Task struct {
+	Command string
+	*log.Logger
+}
+
+这个类型的工厂方法像这样：
+
+func NewTask(command string, logger *log.Logger) *Task {
+	return &Task{command, logger}
+}
+
+当 log.Logger 实现了 Log() 方法后，Task 的实例 task 就可以调用该方法：
+
+task.Log()
+
+类型可以通过继承多个接口来提供像 多重继承 一样的特性：
+
+type ReaderWriter struct {
+	*io.Reader
+	*io.Writer
+}
