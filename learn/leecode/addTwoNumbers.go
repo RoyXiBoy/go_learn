@@ -16,15 +16,13 @@ type ListNode struct {
 	 l1_start = l1
 	 l2_start = l2
  	for i := 0; i <len(val1); i++ {
-		var temp1 *ListNode = new(ListNode)
-		temp1.Val = val1[i]
+		var temp1 *ListNode = newListNode(val1[i])
 		l1.Next = temp1
 		l1 = l1.Next
 	}
 
 	for i := 0; i <len(val2); i++ {
-		var temp2 *ListNode = new(ListNode)
-		temp2.Val = val2[i]
+		var temp2 *ListNode = newListNode(val2[i])
 		l2.Next = temp2
 		l2 = l2.Next
 	}
@@ -33,6 +31,12 @@ type ListNode struct {
 		fmt.Print(l3.Val)
 		l3 = l3.Next
 	}
+ }
+
+ func newListNode(val int) *ListNode{
+ 	var listNode *ListNode
+ 	listNode.Val = val
+ 	return listNode
  }
 
  func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
@@ -50,14 +54,12 @@ type ListNode struct {
 			sum += l2.Val
 			l2 = l2.Next
 		}
-		var temp *ListNode = new(ListNode)
-		temp.Val = sum % 10
+		var temp *ListNode = newListNode(sum % 10)
 		l3.Next = temp
 		l3 = l3.Next
 	}
 	if sum /10 ==1{
-		var temp *ListNode = new(ListNode)
-		temp.Val = 1
+		var temp *ListNode = newListNode(1)
 		l3.Next = temp
 	}
 	return l3_start.Next
